@@ -1,0 +1,8 @@
+.right p {
+  text-align: left;
+}
+
+.right {
+  text-align: left;
+  justify-content: start;
+}

@@ -1,0 +1,104 @@
+.card {
+  width: 310px;
+  height: 392px;
+  flex-shrink: 0;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  justify-content: space-around;
+  background: #fff;
+  padding: 10px;
+  position: relative;
+  cursor: pointer;
+  margin: 10px;
+  box-shadow: 0px 1px 1px 1px rgba(85, 84, 84, 0.25);
+  transition: 0.2s all ease-in-out;
+}
+
+.off {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  background-color: darkgoldenrod;
+  color: white;
+  width: 50px;
+  border-radius: 0px 5px 0px 20px;
+}
+
+.card:hover {
+  box-shadow: 1px 1px 3px 3px rgba(85, 84, 84, 0.25);
+}
+
+.lower {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lower .top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.productName {
+  color: #000;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.round {
+  width: 20px;
+  height: 20px;
+  border-radius: 100px;
+  color: black;
+}
+
+.price {
+  color: #655;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.addToCart {
+  width: 150px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 30px;
+  background: #5cb0df;
+  color: #fff;
+  font-style: normal;
+  line-height: normal;
+}
+
+.upper img {
+  width: 200px;
+  height: 200px;
+  flex-shrink: 0;
+}
+
+@media screen and (max-width: 800px) {
+  .card {
+    width: 210px;
+    height: 292px;
+  }
+
+  .upper img {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+  }
+  .addToCart {
+    width: 100px;
+    height: 30px;
+  }
+  .productName {
+    font-size: 13px;
+  }
+}
