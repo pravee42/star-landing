@@ -1,0 +1,142 @@
+.Text{
+    text-align: left;
+    margin-left: 42px;
+    margin-top: 64px;
+}
+.conatiner{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-left: 42px;
+    
+   
+}
+.ProductContainer{
+ margin-bottom: 24px;
+ 
+}
+.ProductCard{
+    width: 1356px;
+height: 100%;
+flex-shrink: 0;
+border-radius: 5px;
+background: #F1F1F1;
+}
+.ProductDetails{
+display: flex;
+justify-content: space-around;
+
+align-items: center;
+
+}
+.ProductImage{
+    width: 100px;
+height: 100px;
+flex-shrink: 0;
+object-fit: contain;
+padding-top: 10px;
+padding-bottom: 10px;
+}
+.ProductName{
+    color: #000;
+font-family: Lato;
+font-size: 30px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+}
+.ProductPrice{
+    color: #000;
+font-family: Lato;
+font-size: 30px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+}
+.TotalPrice{
+    color: #000;
+font-family: Lato;
+font-size: 30px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+}
+.CountCOntainer{
+    display: flex;
+    flex-direction: row;
+    gap: 28px;
+    align-items: center;
+    
+}
+.ciricle1{
+    width: 30px;
+height: 30px;
+flex-shrink: 0;
+background-color:  #D9D9D9;
+border-radius: 50%;
+text-align: center;
+color: #000;
+font-family: Lato;
+font-size: 36px;
+font-style: normal;
+font-weight: bolder;
+line-height: normal;
+cursor: pointer;
+}
+.ciricle2{
+    width: 30px;
+height: 30px;
+flex-shrink: 0;
+background-color:  #D9D9D9;
+border-radius: 50%;
+text-align: center;
+color: #000;
+font-family: Lato;
+font-size: 36px;
+font-style: normal;
+font-weight: bolder;
+line-height: normal;
+text-align: center;
+cursor: pointer;
+}
+.ciricletext{
+    transform: translateY(8px);
+}
+.add{
+    font-size: 30px;
+    font-weight: bolder;
+    
+    text-align: center;
+    position: relative;
+    top: -7%;
+}
+
+.TotalPriceall{
+    text-align: end;
+    margin-right: 140px;
+}
+.Totalbutton{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+ 
+   margin-left: 40px;
+   margin-right: 140px;
+  
+
+}
+.endbutton{
+    width: 150px;
+    height: 50px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: #1689CC;
+    margin-top: 30px;
+    border: none;
+    color: #FFF;
+font-family: Lato;
+font-size: 24px;
+font-style: normal;
+font-weight: 900;
+line-height: normal;
+}
