@@ -1,0 +1,73 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    gap:12px;
+    margin-left: 30px;
+    margin-bottom: 26px;
+    align-items: flex-start;
+    
+    }
+    .formLable{
+        color: #413D3D;
+    font-family: Roboto Slab;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: left;
+    }
+    .formInput{
+        width: 427px;
+    height: 52px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    border: 2px solid #8A7E7E;
+    color: #5F5A5A;
+    font-family: Roboto Slab;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    }
+    .formInput::placeholder{
+        text-align: left;
+        padding: 30px;
+    }
+    .textarea{
+        width: 425px;
+        height: 200px;
+    }
+    .container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        margin-top: 60px;
+    }
+    .button{
+        border-radius: 5px;
+        background: linear-gradient(127deg, #84c2e6 0%, #ff40ec 99.22%);
+        width: 200px;
+        height: 50px;
+        margin-bottom: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        flex-shrink: 0;
+        color: #fff;
+        font-size: 20px;
+        font-style: normal;
+        margin-top: 20px;
+        font-weight: 500;
+        transition: 0.2s all ease-in-out;
+        line-height: normal;
+        border: none;
+    }
+
+    .button:hover{
+        scale: 1.1;
+        transition: all 0.4s ease-in-out;
+        
+    }
+    

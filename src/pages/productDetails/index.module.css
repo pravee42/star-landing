@@ -6,3 +6,135 @@
   text-align: left;
   justify-content: start;
 }
+.container {
+  position: relative;
+  top: 140px;
+  margin: 0px 40px 0px 40px;
+}
+
+.ProductContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 150px;
+}
+.imageContainer{
+display: flex;
+flex-direction: column;
+gap:104px;
+
+}
+.ProductImage{
+  width: 200px;
+height: 284px;
+
+}
+.subimageContainer{
+  display: flex;
+  flex-direction: row;
+  gap: 75px;
+  
+}
+.subimage{
+  height: 100px;
+  width: 100px;
+  background: #EFEFEF;
+  box-shadow: 0px 2px 4px 1px rgba(116, 111, 111, 0.25);
+}
+.subimageshow{
+  width: 67px;
+height: 100px;
+
+}
+.TextContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.prdname{
+
+text-align: left;
+margin-bottom: 50px;
+
+}
+.prdPara{
+color: #000;
+font-family: Lato;
+font-size: 24px;
+font-style: normal;
+
+line-height: 30px;
+text-align: left;
+}
+.ButtonContainer{
+
+  margin-top: 64px;
+  text-align: left;
+}
+.ButtonC{
+  width: 200px;
+height: 60px;
+flex-shrink: 0;
+border-radius: 5px;
+background: #E6CA83;
+border: none;
+margin-right: 75px;
+color: #FFFDFD;
+font-family: Lato;
+font-size: 30px;
+font-style: normal;
+
+line-height: normal;
+}
+.ButtonB{
+  width: 200px;
+  height: 60px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: #83C2E6;;
+  border: none;
+  color: #FFFDFD;
+font-family: Lato;
+font-size: 30px;
+
+line-height: normal;
+}
+.RCtext{
+  margin-top: 70px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 64px;
+  
+}
+.btnview{
+  width: 90px;
+height: 30px;
+flex-shrink: 0;
+border-radius: 20px;
+background: #84C2E6;
+border: none;
+color: #FFF;
+font-family: Lato;
+font-size: 14px;
+font-style: normal;
+
+line-height: normal;
+}
+.RcCards{
+display: flex;
+flex-direction: row;
+gap: 30px;
+flex-wrap: wrap;
+
+}
+.RcCard{
+  width: 310px;
+height: 392px;
+flex-shrink: 0;
+border-radius: 5px;
+background: #FFF;
+box-shadow: 0px 1px 3px 3px rgba(85, 84, 84, 0.25);
+}
+
