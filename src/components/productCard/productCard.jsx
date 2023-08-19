@@ -29,7 +29,7 @@ export default function ProductCardComponent({
         </div>
         <div className={style.lower}>
           <div className={style.top}>
-            <p style={{ textAlign: "left" }} className={style.productName}>
+            <p style={{ textAlign: "left" }} className={`h6 text-dark`}>
               {name}
             </p>
             <div className="d-flex flex-row gap-2">
@@ -46,7 +46,7 @@ export default function ProductCardComponent({
           </div>
           <div className="d-flex justify-content-between align-items-center justify-content-center">
             <p className={`${style.price}`}>Rs. {price}</p>
-            <button
+            {/* <button
               onClick={() => {
                 dispatch(
                   addtoCart({
@@ -62,7 +62,7 @@ export default function ProductCardComponent({
               className={`${style.addToCart}`}
             >
               Add to Cart
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

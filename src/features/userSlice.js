@@ -38,11 +38,15 @@ export const cartSlice = createSlice({
 
         localStorage.setItem("cart", JSON.stringify(state.cart));
       }
+    },
+    clearCart: (state, action) => {
+      state.cart = [];
+      localStorage.setItem("cart", JSON.stringify(state.cart));
     }
   }
 });
 
-export const { addtoCart, changeQty } = cartSlice.actions;
+export const { addtoCart, changeQty, clearCart } = cartSlice.actions;
 
 export const selectCart = (state) => state.user.cart;
 

@@ -1,13 +1,67 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./index.module.css";
-import watch from "../../assests/pngwing3.png";
+import { v4 as uuid } from "@lukeed/uuid";
 import { useSelector, useDispatch } from "react-redux";
-import { selectCart, changeQty } from "./../../features/userSlice";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { selectCart, changeQty, clearCart } from "./../../features/userSlice";
+import { ref, set } from "firebase/database";
+import { db } from "./../../firebase";
 
 const Checkout = () => {
   const cart = useSelector(selectCart);
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
+  const navigate = useNavigate();
+  const [total, setTotal] = useState(0);
+  const [count, setCount] = useState(0);
+  const [orderData, setOrderData] = useState({
+    id: uuid(),
+    name: "",
+    email: "",
+    contact: "",
+    address: "",
+    city: "",
+    pincode: "",
+    status: "pending",
+    created_at: new Date(),
+    total_price: total,
+    product_count: count
+  });
+
+  useEffect(() => {
+    setTotal(0);
+    setCount(0);
+    cart.forEach((D) => {
+      setTotal((s) => s + D.total);
+      setCount((s) => s + D.quantity);
+    });
+  }, [cart]);
+
+  const saveData = () => {
+    let newCart = [];
+    cart.map((d) => {
+      newCart.push({
+        id: d.id,
+        name: d.name,
+        quantity: d.quantity,
+        total: d.total,
+        price: d.price
+      });
+    });
+    const newOrder = {
+      ...orderData,
+      products: newCart,
+      total_price: total,
+      product_count: count
+    };
+    set(ref(db, `orders/${orderData.id}/`), newOrder).then((res) => {
+      toast.success("Order created");
+      dispatch(clearCart(""));
+      navigate("/");
+    });
+  };
+
   return (
     <div
       className={`d-flex flex-row gap-2 align-items-center justify-content-between p-3 flex-wrap`}
@@ -16,67 +70,67 @@ const Checkout = () => {
         <h4 className={`${style.text}`}>Checkout Details</h4>
         <div className={`${style.formContainer}`}>
           {step === 1 ? (
-            <div className={`d-flex flex-column`}>
+            <div className={`d-flex gap-4 flex-column`}>
               {" "}
-              <div className={`${style.form}`}>
-                <label className={`${style.formLable}`}>Name</label>
-                <input
-                  className={`${style.formInput}`}
-                  placeholder="Enter your name"
-                />
-              </div>
-              <div className={`${style.form}`}>
-                <label className={`${style.formLable}`}>Email</label>
-                <input
-                  className={`${style.formInput}`}
-                  placeholder="Enter your Email"
-                />
-              </div>
-              <div className={`${style.form}`}>
-                <label className={`${style.formLable}`}>Phone number</label>
-                <input
-                  className={`${style.formInput}`}
-                  placeholder="Enter your Phone number"
-                />{" "}
-              </div>{" "}
+              <input
+                onChange={(e) => {
+                  setOrderData({ ...orderData, name: e.target.value });
+                }}
+                className={`form-control`}
+                placeholder="Enter your name"
+              />
+              <input
+                onChange={(e) => {
+                  setOrderData({ ...orderData, email: e.target.value });
+                }}
+                className={`form-control`}
+                placeholder="Enter your Email"
+              />
+              <input
+                onChange={(e) => {
+                  setOrderData({ ...orderData, contact: e.target.value });
+                }}
+                className={`form-control`}
+                placeholder="Enter your Phone number"
+              />{" "}
               <div className={`d-flex flex-column align-items-end w-100`}>
                 <button
                   style={{ float: "right", width: "fit-content" }}
                   className={`btn btn-primary`}
-                  onClick={(_) => setStep(2)}
+                  onClick={(_) => {
+                    if (
+                      (orderData.name === "") | (orderData.contact === "") ||
+                      orderData.email === ""
+                    ) {
+                      alert("Please Fill all the fields");
+                    } else {
+                      setStep(2);
+                    }
+                  }}
                 >
                   Next {">"}
                 </button>
               </div>
             </div>
           ) : step === 2 ? (
-            <>
-              <div className={`${style.form}`}>
-                <label className={`${style.formLable}`}>
-                  House no , street name
-                </label>
-                <input
-                  className={`${style.formInput}`}
-                  placeholder="Enter House no , street name"
-                />
-              </div>
-
-              <div className={`${style.form}`}>
-                <label className={`${style.formLable}`}>City</label>
-                <input
-                  className={`${style.formInput}`}
-                  placeholder="Enter Your City"
-                />
-              </div>
-
-              <div className={`${style.form}`}>
-                <label className={`${style.formLable}`}>Pincode</label>
-                <input
-                  className={`${style.formInput}`}
-                  placeholder="Enter Your Pincode"
-                  type="number"
-                />
-              </div>
+            <div className={`d-flex flex-column gap-4`}>
+              <textarea
+                placeholder="Address"
+                onChange={(e) =>
+                  setOrderData({ ...orderData, address: e.target.value })
+                }
+                className="form-control"
+                cols="30"
+                rows="2"
+              ></textarea>
+              <input
+                onChange={(e) => {
+                  setOrderData({ ...orderData, pincode: e.target.value });
+                }}
+                defaultValue={orderData.pincode}
+                className={`form-control`}
+                placeholder="Enter your Pincode"
+              />{" "}
               <div
                 className={`d-flex flex-row flex-wrap px-4 gap-3 justify-content-between align-items-center w-100`}
               >
@@ -90,18 +144,18 @@ const Checkout = () => {
                 <button
                   style={{ float: "right", width: "fit-content" }}
                   className={`btn btn-success`}
-                  onClick={(_) => setStep(2)}
+                  onClick={(_) => saveData()}
                 >
                   Confrim Purchase
                 </button>
               </div>
-            </>
+            </div>
           ) : null}
         </div>
       </div>
 
       <div
-        className={`${style.cartContainer} d-flex flex-column   p-2 shadow-xl`}
+        className={`${style.cartContainer} d-flex flex-column p-2 shadow-xl`}
       >
         <div style={{ display: "flex", justifyContent: "center" }}>
           <div className={`${style.title}`}>Order summary</div>
@@ -129,7 +183,7 @@ const Checkout = () => {
                         className={`d-flex align-items-center ${style.productContainer}`}
                       >
                         <div
-                          className={`d-flex gap-4 align-items-center justify-content-evenly`}
+                          className={`d-flex gap-4 align-items-center justify-content-start w-100`}
                         >
                           <img
                             src={data.image}
@@ -139,7 +193,7 @@ const Checkout = () => {
                           />
                           <p
                             className="h6 text-dark mb-0 ms-3"
-                            style={{ maxWidth: "600px" }}
+                            style={{ maxWidth: "600px", textAlign: "left" }}
                           >
                             {data.name}
                           </p>
@@ -176,46 +230,16 @@ const Checkout = () => {
                   </tr>
                 );
               })}
+
+              <tr>
+                <th>Total</th>
+                <th>{count}</th>
+                <th></th>
+                <th></th>
+                <th>{total}</th>
+              </tr>
             </tbody>
           </table>
-        </div>
-
-        {/* {cart.map((data) => (
-          <div className={`${style.productContainer}`}>
-            <div className={`${style.product}`}>
-              <img src={watch} className={`${style.img}`} />
-              <p className="h6 text-dark" style={{ width: 600 }}>
-                {data.name}
-              </p>
-              <h4>Qty: {data.quantity}</h4>
-              <h4>Rs {data.price} </h4>
-            </div>
-          </div>
-        ))} */}
-
-        <div className={`${style.line}`}></div>
-
-        <div className={`${style.totaldetails}`}>
-          <div className={`${style.totaldetailsContainer}`}>
-            <h4 className={`${style.totaltext}`}>Item total :</h4>
-            <h4 className={`${style.totaltext}`}>Rs 8999</h4>
-          </div>
-
-          <div className={`${style.totaldetailsContainer}`}>
-            <h4 className={`${style.totaltext}`}>Taxes and charges :</h4>
-            <h4 className={`${style.totaltext}`}>Rs 8999</h4>
-          </div>
-
-          <div className={`${style.totaldetailsContainer}`}>
-            <h4 className={`${style.totaltext}`}>Delivery charge :</h4>
-            <h4 className={`${style.totaltext}`}>Rs 8999</h4>
-          </div>
-        </div>
-
-        <div className={`${style.line}`}></div>
-        <div className={`${style.finalAmount}`}>
-          <h4 className={`${style.totaltext}`}>Total amount:</h4>
-          <h4 className={`${style.totaltext}`}>Rs 999</h4>
         </div>
       </div>
     </div>

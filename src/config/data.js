@@ -6,12 +6,12 @@ import Image5 from "../assests/pngwind4.png";
 import Image6 from "../assests/pngwing3.png";
 
 export const ProductCategoriesData = [
-  { name: "Phone", image: Image1 },
-  { name: "Headset", image: Image2 },
-  { name: "TV", image: Image3 },
-  { name: "Speaker", image: Image4 },
-  { name: "Phone", image: Image5 },
-  { name: "Watch", image: Image6 }
+  { name: "phone", image: Image1 },
+  { name: "accessories", image: Image2 },
+  { name: "laptop", image: Image3 },
+  { name: "electronics", image: Image4 },
+  { name: "phone", image: Image5 },
+  { name: "tab", image: Image6 }
 ];
 
 export const ProductDetails = [{ productImg0: "", name: "", price: "" }];
