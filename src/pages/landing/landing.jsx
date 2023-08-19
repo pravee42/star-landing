@@ -1,12 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import HeaderImage from "../../assests/headerImg.png";
 import BannerComponent from "../../components/banner/banner";
 import { BannerImag1, BannerImg2, BannerImg3 } from "../../utils/constants";
 import style from "./index.module.css";
 import ProductCategories from "./parts/category/category";
 import Productlanding from "./parts/products/products";
+import { Banner1 } from "../../config/api";
 
 export default function LandingPage() {
+  const [banner, setBanner] = useState({
+    img1: null,
+    img2: null,
+    img3: null
+  });
+
+  useEffect(() => {
+    async function getData() {
+      const banners = await Banner1();
+      await setBanner({
+        img1: banners[1]?.image,
+        img2: banners[0]?.image,
+        img3: banners[2]?.image
+      });
+    }
+    getData();
+  }, [banner]);
+
   return (
     <div className={style.container}>
       <div className={style.header}>
@@ -34,19 +53,19 @@ export default function LandingPage() {
         <Productlanding title={"Mobile Phones"} />
       </div>
       <div>
-        <BannerComponent image={BannerImag1} title={"Welcome"} />
+        <BannerComponent image={banner.img1} title={"Welcome"} />
       </div>
       <div>
         <Productlanding title={"Trending"} />
       </div>
       <div>
-        <BannerComponent image={BannerImg2} title={"Welcome"} />
+        <BannerComponent image={banner.img2} title={"Welcome"} />
       </div>
       <div>
         <Productlanding title={"Accssories"} />
       </div>
       <div>
-        <BannerComponent image={BannerImg3} title={"Welcome"} />
+        <BannerComponent image={banner.img3} title={"Welcome"} />
       </div>
     </div>
   );

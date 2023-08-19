@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { selectCart } from "../../features/userSlice";
+import { Badge } from "@nextui-org/react";
 
 export default function NavBar() {
+  const cart = useSelector(selectCart);
+
   return (
-    <div>
+    <div style={{ position: "sticky" }}>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
@@ -22,7 +27,7 @@ export default function NavBar() {
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <a className="nav-link active" aria-current="page" href="/">
                   Home
                 </a>
               </li>
@@ -32,9 +37,11 @@ export default function NavBar() {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Cart
-                </a>
+                <Badge content={cart.length} color="primary">
+                  <a className="nav-link" href="#">
+                    Cart <i className="bi bi-bag"></i>
+                  </a>
+                </Badge>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">
