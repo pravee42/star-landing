@@ -1,152 +1,152 @@
-.text{
-    text-align: left;
-    margin-left: 30px;
-    margin-top: 84px;
-    margin-bottom: 66px;
+.text {
+  text-align: left;
+  margin-left: 30px;
+  margin-top: 84px;
+  margin-bottom: 66px;
 }
-.container{
-    display: flex;
-    
-    flex-direction: row;
-}
-
-.formContainer{
-display: flex;
-
-flex-direction: column;
-width: 50%;
-}
-.form{
-display: flex;
-flex-direction: column;
-gap:12px;
-margin-left: 30px;
-margin-bottom: 26px;
-}
-.formLable{
-    color: #413D3D;
-font-family: Roboto Slab;
-font-size: 18px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-text-align: left;
-}
-.formInput{
-    width: 427px;
-height: 52px;
-flex-shrink: 0;
-border-radius: 5px;
-border: 2px solid #8A7E7E;
-color: #5F5A5A;
-font-family: Roboto Slab;
-font-size: 18px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-}
-.formInput::placeholder{
-    text-align: left;
-    padding: 30px;
-}
-.button{
-    width: 427px;
-height: 52px;
-flex-shrink: 0;
-border-radius: 5px;
-background: #479AD7;
-color: #FFF;
-font-family: Roboto Slab;
-font-size: 24px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
-border: none;
-margin-left: 30px;
-margin-top: 40px;
-
-}
-.cartContainer{
-    width: 777px;
-height: auto;
-flex-shrink: 0;
-border-radius: 5px;
-background: #FFF;
-box-shadow: 2px 2px 5px 5px rgba(142, 135, 135, 0.25);
-margin-right: 30px;
-}
-.title{
-    width: 300px;
-height: 50px;
-flex-shrink: 0;
-border-radius: 5px;
-background: #EAEAEA;
-color: #000;
-font-family: Roboto Slab;
-font-size: 24px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
-margin-top: 50px;
-text-align: center;
-padding-top: 10px;
-align-content: center;
-}
-.productContainer{
-    display: flex;
-    flex-direction: column;
-    gap:60px;
-    
+.container {
+  display: flex;
+  flex-direction: row;
 }
 
-.product{
-    color: #000;
-font-family: Roboto Slab;
-font-size: 24px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
-text-align: left;
-margin-left: 30px;
-margin-top: 53px;
-display: flex;
-justify-content: space-between;
-margin-right: 30px;
-align-items: center;
+.formContainer {
+  display: flex;
+  flex-direction: column;
 }
-.img{
-    width: 80px;
-height: 91.429px;
-flex-shrink: 0;
-object-fit: contain;
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-left: 30px;
+  margin-bottom: 26px;
 }
-.line{
-    width: auto;
-    background-color: black;
-    height: 2px;
-    margin: 30px ;
-    
+.formLable {
+  color: #413d3d;
+  font-family: Roboto Slab;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: left;
 }
-.totaldetails{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.formInput {
+  padding: 5px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  border: 2px solid #8a7e7e;
+  color: #5f5a5a;
+  font-family: Roboto Slab;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
-.totaldetailsContainer{
-    display: flex;
-    justify-content: space-between;
-    margin: 0px 30px;
+.formInput::placeholder {
+  text-align: left;
+  padding: 30px;
 }
-.totaltext{
-    color: #686565;
-font-family: Lato;
-font-size: 18px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
+.button {
+  width: 427px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: #479ad7;
+  color: #fff;
+  font-family: Roboto Slab;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border: none;
+  margin-left: 30px;
+  margin-top: 40px;
 }
-.finalAmount{
-    display: flex;
-    justify-content: space-between;
-    margin: 30px;
+.cartContainer {
+  width: 70%;
+  height: 80vh;
+  overflow: auto;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 2px 2px 5px 5px rgba(142, 135, 135, 0.25);
+  margin-right: 30px;
+}
+@media screen and (max-width:600px) {
+    .cartContainer {
+        width: 100%;
+        margin-top:20px
+    }
+}
+.title {
+  width: 300px;
+  height: 50px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: #eaeaea;
+  color: #000;
+  font-family: Roboto Slab;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: 50px;
+  text-align: center;
+  padding-top: 10px;
+  align-content: center;
+}
+.productContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.product {
+  color: #000;
+  font-family: Roboto Slab;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-align: left;
+  margin-left: 30px;
+  margin-top: 53px;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 30px;
+  align-items: center;
+}
+.img {
+  width: 80px;
+  height: 91.429px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+.line {
+  width: auto;
+  background-color: black;
+  height: 2px;
+  margin: 30px;
+}
+.totaldetails {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.totaldetailsContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 30px;
+}
+.totaltext {
+  color: #686565;
+  font-family: Lato;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.finalAmount {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px;
 }

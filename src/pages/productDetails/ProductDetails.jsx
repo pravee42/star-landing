@@ -1,74 +1,130 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import style from "./index.module.css";
-import phone from "../../assests/phone.png";
-import ProductCardComponent from "../../components/productCard/productCard";
+import { Image } from "@nextui-org/react";
+import { onValue, ref } from "firebase/database";
+import { db } from "../../firebase";
+import { useDispatch } from "react-redux";
+import { addtoCart } from "../../features/userSlice";
+import { useSelector } from "react-redux";
+import { selectProduct } from "../../features/productSlice";
+import Productlanding from "../landing/parts/products/products";
 
 const ProductDetails = () => {
   const { id } = useParams();
+  const [product, setProduct] = useState();
+  const products = useSelector(selectProduct);
+  const dispatch = useDispatch();
+  const [preview, setPreview] = useState();
+
+  useEffect(() => {
+    const ProductsData = () => {
+      onValue(ref(db, `product/${id}/`), (snapshot) => {
+        const data = snapshot.val();
+        if (data !== null) {
+          setProduct(data);
+          setPreview(data.image1);
+        }
+      });
+    };
+    ProductsData();
+  }, [id]);
+
   return (
     <div className={`${style.container}`}>
       <div className={`${style.ProductContainer}`}>
-        <div className={`${style.imageContainer}`}>
-          <img src={phone} alt="product" className={`${style.ProductImage}`} />
-          <div className={`${style.subimageContainer}`}>
-            <div className={`${style.subimage}`}>
-              <img
-                src={phone}
-                alt="product"
-                className={`${style.subimageshow}`}
+        {product ? (
+          <div
+            className={`${style.imageContainer} align-items-center justify-content-center`}
+          >
+            <img
+              src={preview}
+              alt="product"
+              className={`${style.ProductImage} rounded shadow-sm`}
+            />
+            <div className={`${style.subimageContainer}`}>
+              <Image
+                width={100}
+                className="rounded cursor-pointer pointer"
+                style={{ cursor: "pointer" }}
+                onClick={() => setPreview(product.image1)}
+                height={100}
+                src={product?.image1}
+                isZoomed
+                fallbackSrc="https://via.placeholder.com/300x200"
+                alt={product.name}
               />
-            </div>
-            <div className={`${style.subimage}`}>
-              <img
-                src={phone}
-                alt="product"
-                className={`${style.subimageshow}`}
+              <Image
+                width={100}
+                className="rounded cursor-pointer pointer"
+                style={{ cursor: "pointer" }}
+                height={100}
+                onClick={() => setPreview(product.image2)}
+                src={product?.image2}
+                isZoomed
+                fallbackSrc="https://via.placeholder.com/300x200"
+                alt={product.name}
               />
-            </div>
-            <div className={`${style.subimage}`}>
-              <img
-                src={phone}
-                alt="product"
-                className={`${style.subimageshow}`}
+              <Image
+                width={100}
+                height={100}
+                onClick={() => setPreview(product.image3)}
+                src={product?.image3}
+                isZoomed
+                className="rounded cursor-pointer pointer"
+                style={{ cursor: "pointer" }}
+                fallbackSrc="https://via.placeholder.com/300x200"
+                alt={product.name}
               />
             </div>
           </div>
-        </div>
+        ) : null}
 
-        <div className={`${style.TextContainer}`}>
-          <h1 className={`${style.prdname}`}>Iphone 14 pro max </h1>
-          <p className={`${style.prdPara}`}>
-            The iPhone 14 Pro Max measures 160.70 x 77.60 x 7.85mm (height x
-            width x thickness) and weighs 240.00 grams. It was launched in Space
-            Black, Silver, Gold, and Deep Purple colours. It features an IP68
-            rating for dust and water protection. Connectivity options on the
-            iPhone 14 Pro Max include Wi-Fi and Lightning.
-          </p>
-          <div className={`${style.ButtonContainer}`}>
-            <button className={`${style.ButtonC}`}> Add to cart </button>
-            <button className={`${style.ButtonB}`}> Buy now </button>
+        {product && (
+          <div className={`${style.TextContainer}`}>
+            <p
+              className="badge bg-primary text-white"
+              style={{ width: "fit-content" }}
+            >
+              {product.category}
+            </p>
+            <p className={`h5`}>{product.name}</p>
+            <p className={`h6 text-secondary`}>{product.description}</p>
+            <p
+              className="h3 text-success shadow-sm p-3"
+              style={{ width: "fit-content" }}
+            >
+              💲{product.price}
+            </p>
+
+            <div className={`${style.ButtonContainer}`}>
+              <button
+                onClick={() =>
+                  dispatch(
+                    addtoCart({
+                      id: product.id,
+                      name: product.name,
+                      price: product.price,
+                      image: product.image1,
+                      quantity: 1,
+                      total: parseInt(1) * parseInt(product.price)
+                    })
+                  )
+                }
+                className={`btn btn-primary p-2 h-5`}
+              >
+                {" "}
+                Add to cart{" "}
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
-
-      <div className={`${style.RecommendedProducts}`}>
-        <div className={`${style.RCtext}`}>
-          <h1>Recommended products</h1>
-          <button className={`${style.btnview}`}>View all</button>
-        </div>
-      </div>
-
-      <div className={`${style.RcCards}`}>
-        <ProductCardComponent />
-        <ProductCardComponent />
-        <ProductCardComponent />
-        <ProductCardComponent />
-        <ProductCardComponent />
-        <ProductCardComponent />
-        <ProductCardComponent />
-        <ProductCardComponent />
-      </div>
+      <Productlanding
+        data={products ? products : []}
+        category={""}
+        title={"Trending"}
+      />
     </div>
   );
 };

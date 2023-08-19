@@ -10,9 +10,8 @@ const Routing = () => {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />}></Route>
-      <Route path="/product" element={<ProductDetails />}></Route>
+      <Route path="/product/:id" element={<ProductDetails />}></Route>
       <Route path="/profile" element={<LandingPage />}></Route>
-      <Route path="/cart" element={<Cart />}></Route>
       <Route path="/checkout" element={<Checkout />}></Route>
       <Route path="/services" element={<Services />}></Route>
     </Routes>

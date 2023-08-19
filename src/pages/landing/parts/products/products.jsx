@@ -4,8 +4,11 @@ import PP from "../../../../assests/pp.png";
 import { ScrollingCarousel } from "@trendyol-js/react-carousel";
 import style from "./index.module.css";
 
-export default function Productlanding({ title, data, filterarray, url }) {
-  return (
+export default function Productlanding({ title, data, category }) {
+  const mapData = data.filter((ddd) =>
+    ddd.category.toLowerCase().includes(category.toLowerCase())
+  );
+  const newData = mapData.length > 0 && (
     <div
       className={`${style.container} d-flex flex-column gap-3 align-items-start w-100`}
     >
@@ -18,55 +21,19 @@ export default function Productlanding({ title, data, filterarray, url }) {
       <ScrollingCarousel
         className={`d-flex flex-row gap-4 flex-wrap align-items-center`}
       >
-        <ProductCardComponent
-          name={"Xiami 12 pro"}
-          image={PP}
-          off={80}
-          price={12000}
-        />
-        <ProductCardComponent
-          name={"Xiami 12 pro"}
-          image={PP}
-          off={80}
-          price={12000}
-        />
-        <ProductCardComponent
-          name={"Xiami 12 pro"}
-          image={PP}
-          off={80}
-          price={12000}
-        />
-        <ProductCardComponent
-          name={"Xiami 12 pro"}
-          image={PP}
-          off={80}
-          price={12000}
-        />
-        <ProductCardComponent
-          name={"Xiami 12 pro"}
-          image={PP}
-          off={80}
-          price={12000}
-        />
-        <ProductCardComponent
-          name={"Xiami 12 pro"}
-          image={PP}
-          off={80}
-          price={12000}
-        />
-        <ProductCardComponent
-          name={"Xiami 12 pro"}
-          image={PP}
-          off={80}
-          price={12000}
-        />
-        <ProductCardComponent
-          name={"Xiami 12 pro"}
-          image={PP}
-          off={80}
-          price={12000}
-        />
+        {data
+          .filter((d) => d.category.toLowerCase().includes(category))
+          .map((d, idx) => (
+            <ProductCardComponent
+              name={d.name.slice(0, 50)}
+              image={d.image1}
+              price={d.price}
+              details={d}
+              off={d.offer ? d.offer : null}
+            />
+          ))}
       </ScrollingCarousel>
     </div>
   );
+  return <>{newData}</>;
 }

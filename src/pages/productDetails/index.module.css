@@ -8,133 +8,129 @@
 }
 .container {
   position: relative;
-  top: 140px;
-  margin: 0px 40px 0px 40px;
+  margin:40px;
 }
 
-.ProductContainer{
+.ProductContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 150px;
+  gap: 40px;
 }
-.imageContainer{
-display: flex;
-flex-direction: column;
-gap:104px;
 
+@media screen and (max-width:600px){
+  .ProductContainer {
+     flex-direction: column;
+    justify-content: center !important;
+  } 
 }
-.ProductImage{
-  width: 200px;
-height: 284px;
 
+.imageContainer {
+  display: flex;
+  flex-direction: column;
 }
-.subimageContainer{
+.ProductImage {
+  width: 80%;
+  height: fit-content;
+}
+.subimageContainer {
   display: flex;
   flex-direction: row;
-  gap: 75px;
-  
+  margin-top: 20px;
+  gap: 10px;
 }
-.subimage{
-  height: 100px;
-  width: 100px;
-  background: #EFEFEF;
-  box-shadow: 0px 2px 4px 1px rgba(116, 111, 111, 0.25);
-}
-.subimageshow{
-  width: 67px;
-height: 100px;
 
+
+@media screen  and (max-width:700px){
+  .subimage{
+    height:125px;
+    width:125px;
+  }
 }
-.TextContainer{
+
+.subimageshow {
+  width: 67px;
+  height: 100px;
+}
+.TextContainer {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-}
-.prdname{
-
-text-align: left;
-margin-bottom: 50px;
-
-}
-.prdPara{
-color: #000;
-font-family: Lato;
-font-size: 24px;
-font-style: normal;
-
-line-height: 30px;
-text-align: left;
-}
-.ButtonContainer{
-
-  margin-top: 64px;
   text-align: left;
+  gap: 10px;
+  letter-spacing: 2ic;
 }
-.ButtonC{
-  width: 200px;
-height: 60px;
-flex-shrink: 0;
-border-radius: 5px;
-background: #E6CA83;
-border: none;
-margin-right: 75px;
-color: #FFFDFD;
-font-family: Lato;
-font-size: 30px;
-font-style: normal;
 
-line-height: normal;
+@media screen and (max-width:600px){
+  .TextContainer {
+    gap: 20px;
+  }
+  .ProductContainer {
+    gap: 30px;
+  }
 }
-.ButtonB{
+
+.ButtonC {
   width: 200px;
   height: 60px;
   flex-shrink: 0;
   border-radius: 5px;
-  background: #83C2E6;;
+  background: #e6ca83;
   border: none;
-  color: #FFFDFD;
-font-family: Lato;
-font-size: 30px;
+  margin-right: 75px;
+  color: #fffdfd;
+  font-family: Lato;
+  font-size: 30px;
+  font-style: normal;
 
-line-height: normal;
+  line-height: normal;
 }
-.RCtext{
+.ButtonB {
+  width: 200px;
+  height: 60px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: #83c2e6;
+  border: none;
+  color: #fffdfd;
+  font-family: Lato;
+  font-size: 30px;
+
+  line-height: normal;
+}
+.RCtext {
   margin-top: 70px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 64px;
-  
 }
-.btnview{
+.btnview {
   width: 90px;
-height: 30px;
-flex-shrink: 0;
-border-radius: 20px;
-background: #84C2E6;
-border: none;
-color: #FFF;
-font-family: Lato;
-font-size: 14px;
-font-style: normal;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background: #84c2e6;
+  border: none;
+  color: #fff;
+  font-family: Lato;
+  font-size: 14px;
+  font-style: normal;
 
-line-height: normal;
+  line-height: normal;
 }
-.RcCards{
-display: flex;
-flex-direction: row;
-gap: 30px;
-flex-wrap: wrap;
-
+.RcCards {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  flex-wrap: wrap;
 }
-.RcCard{
+.RcCard {
   width: 310px;
-height: 392px;
-flex-shrink: 0;
-border-radius: 5px;
-background: #FFF;
-box-shadow: 0px 1px 3px 3px rgba(85, 84, 84, 0.25);
+  height: 392px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0px 1px 3px 3px rgba(85, 84, 84, 0.25);
 }
-

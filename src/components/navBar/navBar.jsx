@@ -38,7 +38,7 @@ export default function NavBar() {
               </li>
               <li className="nav-item">
                 <Badge content={cart.length} color="primary">
-                  <a className="nav-link" href="#">
+                  <a className="nav-link" href="/checkout">
                     Cart <i className="bi bi-bag"></i>
                   </a>
                 </Badge>

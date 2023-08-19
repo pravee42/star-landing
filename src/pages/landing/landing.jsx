@@ -1,18 +1,37 @@
 import React, { useState, useEffect } from "react";
 import HeaderImage from "../../assests/headerImg.png";
 import BannerComponent from "../../components/banner/banner";
-import { BannerImag1, BannerImg2, BannerImg3 } from "../../utils/constants";
+import { onValue, ref, set } from "firebase/database";
 import style from "./index.module.css";
 import ProductCategories from "./parts/category/category";
+import { setProductsData } from "../../features/productSlice";
+import { useDispatch } from "react-redux";
 import Productlanding from "./parts/products/products";
 import { Banner1 } from "../../config/api";
+import { db } from "../../firebase";
 
 export default function LandingPage() {
+  const dispatch = useDispatch();
+  const [products, setProducts] = useState();
+
   const [banner, setBanner] = useState({
     img1: null,
     img2: null,
     img3: null
   });
+
+  useEffect(() => {
+    onValue(ref(db, "product/"), (snapshot) => {
+      try {
+        const data = snapshot.val();
+        if (data !== null) {
+          setProducts(Object.values(data));
+        }
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    });
+  }, [4]);
 
   useEffect(() => {
     async function getData() {
@@ -50,19 +69,31 @@ export default function LandingPage() {
         <ProductCategories />
       </div>
       <div>
-        <Productlanding title={"Mobile Phones"} />
+        <Productlanding
+          data={products ? products : []}
+          category={"phone"}
+          title={"Mobile Phones"}
+        />
       </div>
       <div>
         <BannerComponent image={banner.img1} title={"Welcome"} />
       </div>
       <div>
-        <Productlanding title={"Trending"} />
+        <Productlanding
+          data={products ? products : []}
+          category={"electronics"}
+          title={"Trending"}
+        />
       </div>
       <div>
         <BannerComponent image={banner.img2} title={"Welcome"} />
       </div>
       <div>
-        <Productlanding title={"Accssories"} />
+        <Productlanding
+          data={products ? products : []}
+          category={"accessories"}
+          title={"Accssories"}
+        />
       </div>
       <div>
         <BannerComponent image={banner.img3} title={"Welcome"} />
