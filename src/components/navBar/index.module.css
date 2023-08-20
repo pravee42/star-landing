@@ -1,0 +1,30 @@
+.prductContainer{
+    background-color: aquamarine;
+   
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+.subCategories{
+   
+    background-color: red;
+   
+}
+.sub1{
+    display: flex;
+    
+    gap: 40px;
+}
+.search{
+    width: 200px;
+    height: 40px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    margin-left: 40px;
+    margin-right: 200px;
+    border: none;
+    border-radius: 40px;
+    padding: 20px;
+}

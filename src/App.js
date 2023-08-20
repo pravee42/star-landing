@@ -6,6 +6,7 @@ import AppRouter from "./components/navBar/routing";
 import Routing from "./routing/routing";
 import { Toaster } from "react-hot-toast";
 import { NextUIProvider } from "@nextui-org/react";
+import Footer from "./components/navBar/Footer/Footer";
 
 export default function App() {
   return (
@@ -18,6 +19,9 @@ export default function App() {
         <div className="App">
           <Routing />
           <AppRouter />
+        </div>
+        <div style={{ position: "sticky" }}>
+          <Footer />
         </div>
       </NextUIProvider>
     </Router>
