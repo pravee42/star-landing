@@ -1,0 +1,19 @@
+.continer{
+margin-top: 50px;
+}
+.abtcontiner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 30px;
+}
+.img{
+    height: 500px;
+    width: 500px;
+    object-fit: contain;
+}
+.text{
+    font-family: lato;
+    font-size: 24px;
+    text-align: left;
+}

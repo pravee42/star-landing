@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import Productlanding from "./parts/products/products";
 import { Banner1 } from "../../config/api";
 import { db } from "../../firebase";
-
+import { Content } from "./parts/Content/Content";
 export default function LandingPage() {
   const dispatch = useDispatch();
   const [products, setProducts] = useState();
@@ -68,6 +68,10 @@ export default function LandingPage() {
       <div>
         <ProductCategories />
       </div>
+
+
+      <Content/>
+
       <div>
         <Productlanding
           data={products ? products : []}
