@@ -2,23 +2,38 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectCart } from "../../features/userSlice";
 import { Badge } from "@nextui-org/react";
-import style from './index.module.css'
+import Logo from "../../assests/logo1.png";
+import style from "./index.module.css";
 
 export default function NavBar() {
   const cart = useSelector(selectCart);
-  
- // const products=["mobiles","computer accesories"];
- // const sub1=["all mobile phone","all mobile accesories","case & covers","screen protectors","power bank","republish and open box","arvo activated piece","wearable device","smart home device"]
-  
+  const [isSticky, setIsSticky] = useState(false);
+  const path = window.location.pathname;
 
-  
+  useEffect(() => {
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setIsSticky(true);
+    } else {
+      setIsSticky(false);
+    }
+  };
+  window.addEventListener("scroll", handleScroll);
+
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+  };
+}, []);
 
   return (
-    <div style={{ position: "sticky" }}>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <div className={`${style.navContainer} ${isSticky ? style.sticky : ""}`} >
+      <nav className={`navbar navbar-expand-lg bg-body-tertiary d-flex flex-row align-items-center ${style.stickyNav}`}>
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
-            Star Mobiles
+          <a
+            className="navbar-brand d-flex flex-row gap-2 align-items-center"
+            href="/"
+          >
+            <img src={Logo} style={{ width: 100, height: 100 }} /> Star Mobiles
           </a>
           <button
             className="navbar-toggler"
@@ -32,10 +47,6 @@ export default function NavBar() {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-
-
-          <input className={`${style.search}`}  placeholder="search here"/>
-
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
             <ul className="navbar-nav">
               <li className="nav-item">
@@ -43,13 +54,132 @@ export default function NavBar() {
                   Home
                 </a>
               </li>
-              <li className="nav-item"  >
-                <a className="nav-link" href="/products"  >
-                  Productsiiiii
+              <li className="nav-item">
+                <a className="nav-link" href="/products">
+                  Products
                 </a>
-                
-             
               </li>
+              {path !== "/" ? (
+                <input
+                  type="search"
+                  className={`${style.search}`}
+                  placeholder="search here"
+                />
+              ) : null}
+              {path !== "/" ? (
+                <>
+                  <li class="dropdown nav-item" style={{zIndex:99999}}>
+                    <p
+                      class="dropdown-toggle nav-link"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Mobiles
+                    </p>
+                    <ul class="dropdown-menu" style={{zIndex:7777}}>
+                      <div style={{ maxHeight: "400px", overflow: "auto" }}>
+                        <a class="dropdown-item" href="/categories/sub/apple">
+                          Apple
+                        </a>
+                        <a class="dropdown-item" href="/categories/sub/samsung">
+                          {" "}
+                          Samsung
+                        </a>
+                        <a class="dropdown-item" href="/categories/sub/oppo">
+                          OPPO
+                        </a>
+                        <a class="dropdown-item" href="/categories/sub/vivo">
+                          VIVO
+                        </a>
+                        <a class="dropdown-item" href="/categories/sub/mi">
+                          Mi
+                        </a>
+                        <a class="dropdown-item" href="/categories/sub/oneplus">
+                          One Plus
+                        </a>
+                        <a class="dropdown-item" href="/categories/sub/infinix">
+                          INFINIX
+                        </a>
+                        <a class="dropdown-item" href="/categories/sub/poco">
+                          POCO
+                        </a>
+                        <a class="dropdown-item" href="/categories/sub/redmi">
+                          Redmi
+                        </a>
+                        <a class="dropdown-item" href="/categories/sub/realme">
+                          Realme
+                        </a>
+                        <a class="dropdown-item" href="/categories/sub/iqoo">
+                          IQOO
+                        </a>
+                        <a class="dropdown-item" href="/categories/sub/nokia">
+                          Nokia
+                        </a>
+                        <a class="dropdown-item" href="/categories/sub/asus">
+                          ASUS
+                        </a>
+                        <a class="dropdown-item" href="/categories/sub/lg">
+                          LG
+                        </a>
+                        <a class="dropdown-item" href="/categories/sub/lava">
+                          LAVA
+                        </a>
+                        <a class="dropdown-item" href="/categories/sub/lenovo">
+                          Lenovo
+                        </a>
+                        <a
+                          class="dropdown-item"
+                          href="/categories/sub/micromax"
+                        >
+                          Micromax
+                        </a>
+                        <a class="dropdown-item" href="/categories/sub/karbon">
+                          Karbon
+                        </a>
+                        <a class="dropdown-item" href="/categories/sub/honor">
+                          Honor
+                        </a>
+                      </div>
+                    </ul>
+                  </li>
+                  <li class="dropdown nav-item" style={{zIndex:99999}}>
+                    <p
+                      class="dropdown-toggle nav-link"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Accessories
+                    </p>
+                    <ul class="dropdown-menu" style={{zIndex:7777}}>
+                      <div>
+                        <a class="dropdown-item" href="/categories/sub/apple">
+                          Headphones
+                        </a>
+                        <a class="dropdown-item" href="/categories/sub/samsung">
+                          Earpods
+                        </a>
+                        <a class="dropdown-item" href="/categories/sub/oppo">
+                          Boomed Headset
+                        </a>
+                        <a class="dropdown-item" href="/categories/sub/oppo">
+                          Pendrive
+                        </a>
+                        <a class="dropdown-item" href="/categories/sub/oppo">
+                          Keyboard
+                        </a>
+                        <a class="dropdown-item" href="/categories/sub/oppo">
+                          Mouse
+                        </a>
+                        <a class="dropdown-item" href="/categories/sub/oppo">
+                          Phone Case
+                        </a>
+                      </div>
+                    </ul>
+                  </li>
+                </>
+              ) : null}
               <li className="nav-item">
                 <Badge content={cart.length} color="primary">
                   <a className="nav-link" href="/checkout">
@@ -57,11 +187,6 @@ export default function NavBar() {
                   </a>
                 </Badge>
               </li>
-              {/* <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Profile
-                </a>
-              </li> */}
             </ul>
           </div>
         </div>

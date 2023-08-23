@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { onValue, ref, set } from "firebase/database";
 import { useParams } from "react-router-dom";
+import style from "./index.module.css";
 import { db } from "../../firebase";
 import ProductCardComponent from "../../components/productCard/productCard";
 
@@ -23,11 +24,11 @@ export default function Products() {
 
   return (
     <div className="d-flex flex-column p-2 rounded">
+     
       {name ? (
         <p className="badge bg-success text-white">{name.toUpperCase()}</p>
       ) : null}
       <div
-        style={{ height: "80vh" }}
         className="d-flex p-4 gap-2 align-items-center justify-content-center flex-wrap rounded shadow-sm overflow-auto w-100"
       >
         {!name

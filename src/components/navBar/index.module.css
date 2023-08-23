@@ -1,30 +1,41 @@
-.prductContainer{
-    background-color: aquamarine;
-   
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    display: flex;
-    justify-content: space-between;
-    
+.prductContainer {
+  background-color: aquamarine;
+
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  justify-content: space-between;
 }
-.subCategories{
-   
-    background-color: red;
-   
+
+.stickyContainer {
+  position: sticky;
+  top: 0;
+  z-index: 1000; 
 }
-.sub1{
-    display: flex;
-    
-    gap: 40px;
+
+.stickyNav {
+  transition: background-color 0.3s ease-in-out; /* Optional smooth background color transition */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); 
 }
-.search{
-    width: 200px;
-    height: 40px;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    margin-left: 40px;
-    margin-right: 200px;
-    border: none;
-    border-radius: 40px;
-    padding: 20px;
+
+.subCategories {
+  background-color: red;
+}
+.sub1 {
+  display: flex;
+
+  gap: 40px;
+}
+.search {
+  height: 40px;
+  background-color: white;
+  margin: 0 20px;
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
 }

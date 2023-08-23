@@ -69,8 +69,7 @@ export default function LandingPage() {
         <ProductCategories />
       </div>
 
-
-      <Content/>
+      <Content />
 
       <div>
         <Productlanding
