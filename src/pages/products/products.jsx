@@ -6,6 +6,7 @@ import { selectSearch } from "../../features/userSlice";
 import AccordionGroup from "@mui/joy/AccordionGroup";
 import { useSelector } from "react-redux";
 import Link from "@mui/joy/Link";
+import {NoData} from '../../config/data'
 import Input from "@mui/joy/Input";
 import { Phones, Accessories, Brands } from "./productsConfig.js";
 import Accordion from "@mui/joy/Accordion";
@@ -164,7 +165,12 @@ export default function Products() {
                     price={data.price}
                   />
                 ))
-            : null}
+            :
+            <div className="d-flex flex-column w-100 align-items-center gap-2 justify-content-center">
+              <img src={NoData} style={{width:200}} />
+              <p className="h5 text-primary">No Results Found</p>
+            </div> 
+          }
           {name
             ? products
                 ?.filter((data) => data.category.toLowerCase().includes(name))
