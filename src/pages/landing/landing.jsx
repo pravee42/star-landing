@@ -59,7 +59,7 @@ export default function LandingPage() {
             professional, or just someone who loves staying connected, we have
             the perfect phone for you.
           </div>
-          <div className={style.button}>Shop Now</div>
+          <div onClick={() => window.location.href ="/products"} className={style.button}>Shop Now</div>
         </div>
         <div className={style.headerImage}>
           <img src={HeaderImage} alt="headerImage" />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { selectCart } from "../../features/userSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { selectCart, setSearch } from "../../features/userSlice";
 import { Badge } from "@nextui-org/react";
 import Logo from "../../assests/logo1.png";
 import style from "./index.module.css";
@@ -9,6 +9,7 @@ export default function NavBar() {
   const cart = useSelector(selectCart);
   const [isSticky, setIsSticky] = useState(false);
   const path = window.location.pathname;
+  const dispatch = useDispatch()
 
   useEffect(() => {
   const handleScroll = () => {
@@ -47,8 +48,8 @@ export default function NavBar() {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div className="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul className="navbar-nav">
+          <div className="collapse navbar-collapse d-flex align-items-center" id="navbarNavDropdown">
+            <ul className="navbar-nav d-flex align-items-center gap-2">
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="/">
                   Home
@@ -62,11 +63,12 @@ export default function NavBar() {
               {path !== "/" ? (
                 <input
                   type="search"
+                  onChange={e => {dispatch(setSearch(e.target.value))}}
                   className={`${style.search}`}
                   placeholder="search here"
                 />
               ) : null}
-              {path !== "/" ? (
+              {path === "/dontshowthis" ? (
                 <>
                   <li class="dropdown nav-item" style={{zIndex:99999}}>
                     <p

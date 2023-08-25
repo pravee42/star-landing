@@ -82,21 +82,39 @@ const ProductDetails = () => {
 
         {product && (
           <div className={`${style.TextContainer}`}>
-            <p
+           <div className="d-flex gap-2">
+              <p
               className="badge bg-primary text-white"
               style={{ width: "fit-content" }}
             >
               {product.category}
             </p>
-            <p className={`h5`}>{product.name}</p>
-            <p className={`h6 text-secondary`}>{product.description}</p>
-            <p
-              className="h3 text-success shadow-sm p-3"
+             <p
+              className="badge bg-warning text-dark"
               style={{ width: "fit-content" }}
             >
-              💲{product.price}
+              {product.brand}
             </p>
-
+           </div>
+            <p className={`h5`}>{product.name}</p>
+            <p className={`h6 text-secondary`}>{product.description}</p>
+            <p className="h3 text-success" style={{ width: "fit-content" }}>
+              ₹ {product.price}
+            </p>
+            <div className="py-2 borderd rounded">
+              <div className="d-flex flex-row gap-2 align-items-center">
+                <p className="h6 text-dark">Storage</p>
+                <p className="h5 text-primary">{product.storage} GB</p>
+              </div>
+               <div className="d-flex flex-row gap-2 align-items-center">
+                <p className="h6 text-dark">Display Size</p>
+                <p className="h5 text-primary">{product.displaysize} In</p>
+              </div>
+                 <div className="d-flex flex-row gap-2 align-items-center">
+                <p className="h6 text-dark">Brand</p>
+                <p className="h5 text-warning">{product.brand}</p>
+              </div>
+            </div>
             <div className={`${style.ButtonContainer}`}>
               <button
                 onClick={() =>

@@ -6,7 +6,8 @@ export const cartSlice = createSlice({
   initialState: {
     cart: localStorage.getItem("cart")
       ? JSON.parse(localStorage.getItem("cart"))
-      : []
+      : [],
+    search: localStorage.getItem("search") ? localStorage.getItem("search") : ""
   },
   reducers: {
     addtoCart: (state, action) => {
@@ -42,12 +43,17 @@ export const cartSlice = createSlice({
     clearCart: (state, action) => {
       state.cart = [];
       localStorage.setItem("cart", JSON.stringify(state.cart));
+    },
+    setSearch: (state, action) => {
+      state.search = action.payload;
+      localStorage.setItem("search", state.search);
     }
   }
 });
 
-export const { addtoCart, changeQty, clearCart } = cartSlice.actions;
+export const { addtoCart, changeQty, clearCart, setSearch } = cartSlice.actions;
 
 export const selectCart = (state) => state.user.cart;
+export const selectSearch = (state) => state.user.search;
 
 export default cartSlice.reducer;

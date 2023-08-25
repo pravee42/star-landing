@@ -32,37 +32,9 @@ export default function ProductCardComponent({
             <p style={{ textAlign: "left" }} className={`h6 text-dark`}>
               {name}
             </p>
-            <div className="d-flex flex-row gap-2">
-              {["#746C6C", "#3B7BC6", "#C20BD2"].map((colorData) => {
-                return (
-                  <div
-                    key={colorData}
-                    className={style.round}
-                    style={{ backgroundColor: colorData }}
-                  ></div>
-                );
-              })}
-            </div>
           </div>
-          <div className="d-flex justify-content-between align-items-center justify-content-center">
-            <p className={`${style.price}`}>Rs. {price}</p>
-            {/* <button
-              onClick={() => {
-                dispatch(
-                  addtoCart({
-                    id: details.id,
-                    name: details.name,
-                    price: details.price,
-                    quantity: 1,
-                    total: price,
-                    image: details.image1
-                  })
-                );
-              }}
-              className={`${style.addToCart}`}
-            >
-              Add to Cart
-            </button> */}
+          <div className="d-flex justify-content-between align-items-center justify-content-center" style={{marginBottom: 10}}>
+            <p className={`${style.price} text-success`}>Rs. {price}</p>
           </div>
         </div>
       </div>
