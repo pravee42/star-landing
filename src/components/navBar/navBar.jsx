@@ -32,7 +32,7 @@ export default function NavBar() {
         <div className="container-fluid">
           <a
             className="navbar-brand d-flex flex-row gap-2 align-items-center"
-            href="/"
+            href="/products"
           >
             <img src={Logo} style={{ width: 100, height: 100 }} /> Star Mobiles
           </a>
