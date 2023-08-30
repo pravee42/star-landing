@@ -155,92 +155,9 @@ const Checkout = () => {
       </div>
 
       <div
-        className={`${style.cartContainer} d-flex flex-column p-2 shadow-xl`}
+        className={`${style.cartContainer} `}
       >
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <div className={`${style.title}`}>Order summary</div>
-        </div>
-
-        <div className="container mt-5">
-          <table
-            className={`table table-bordered rounded table-stripped table-hover`}
-          >
-            <thead className="table-dark">
-              <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {cart.map((data) => {
-                return (
-                  <tr>
-                    <td>
-                      <div
-                        className={`d-flex align-items-center ${style.productContainer}`}
-                      >
-                        <div
-                          className={`d-flex gap-4 align-items-center justify-content-start w-100`}
-                        >
-                          <img
-                            src={data.image}
-                            style={{ textAlign: "left" }}
-                            className={`rounded shadow-sm img-fluid ${style.img}`}
-                            alt="Product"
-                          />
-                          <p
-                            className="h6 text-dark mb-0 ms-3"
-                            style={{ maxWidth: "600px", textAlign: "left" }}
-                          >
-                            {data.name}
-                          </p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>{data.quantity}</td>
-                    <td>💲{data.price}</td>
-                    <td>💲{data.total}</td>
-                    <td>
-                      <div className="d-flex gap-3">
-                        <button
-                          onClick={() =>
-                            dispatch(
-                              changeQty({ operation: "+", productId: data.id })
-                            )
-                          }
-                          className="btn btn-success"
-                        >
-                          +
-                        </button>
-                        <button
-                          onClick={() => {
-                            dispatch(
-                              changeQty({ operation: "-", productId: data.id })
-                            );
-                          }}
-                          className="btn btn-danger"
-                        >
-                          -
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })}
-
-              <tr>
-                <th>Total</th>
-                <th>{count}</th>
-                <th></th>
-                <th></th>
-                <th>{total}</th>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      
       </div>
     </div>
   );

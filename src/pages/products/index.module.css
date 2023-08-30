@@ -1,7 +1,25 @@
 .sidebar_phones {
-	max-height:300px;
+	max-height: 300px;
 	overflow: auto;
 	display: flex;
-	flex-direction:column;
-	gap:10px
+	flex-direction: column;
+	gap: 10px;
+}
+
+.sideBarFilter {
+	width: 400px;
+	margin-right: 20px;
+	max-height: 500px;
+	height: fit-content;
+	overflow-y: auto;
+}
+
+
+@media screen and (max-width: 600px) {
+	.container {
+		flex-direction:column !important;
+	}
+	.sideBarFilter {
+		width: 100%;
+	}
 }

@@ -1,102 +1,48 @@
 .card {
-  width: 270px;
+  width: 200px;
   height: 352px;
-  flex-shrink: 0;
-  gap: 10px;
-  display: flex;
-  flex-direction: column;
-  border-radius: 5px;
-  justify-content: space-around;
-  background: #fff;
-  padding: 10px;
-  position: relative;
-  cursor: pointer;
-  margin: 10px;
-  border:1px solid lightgrey;
   transition: 0.2s all ease-in-out;
 }
 
-.off {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 10px;
-  background-color: darkgoldenrod;
-  color: white;
-  width: 50px;
-  border-radius: 0px 5px 0px 20px;
-}
-
-
-.lower {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.lower .top {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.productName {
-  color: #000;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
-.round {
-  width: 20px;
-  height: 20px;
-  border-radius: 100px;
-  color: black;
-}
-
-.price {
-  color: #655;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-}
-
-.addToCart {
-  width: 150px;
-  height: 30px;
-  flex-shrink: 0;
-  border-radius: 30px;
-  background: #5cb0df;
-  color: #fff;
-  font-style: normal;
-  line-height: normal;
-  border: none;
-}
-
-.upper img {
+.cardImage {
+  position: relative;
+  background-color: #f4f6f8;
   width: 200px;
   height: 200px;
-  flex-shrink: 0;
+  border-radius: 20px;
+  padding: 10px;
+  cursor: pointer;
 }
 
-@media screen and (max-width: 800px) {
-  .card {
-    width: 210px;
-    height: 292px;
-  }
+.cardImage .tag {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  text-transform: uppercase;
+}
 
-  .upper img {
-    width: 100px;
-    height: 100px;
-    flex-shrink: 0;
-  }
-  .addToCart {
-    width: 100px;
-    height: 30px;
-  }
-  .productName {
-    font-size: 13px;
-  }
+.cardImage img {
+  width: 150px;
+}
+
+.bottom {
+  width:100%
+}
+
+.bottom .category {
+  color: #919eab;
+  font-family: Lato;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.bottom .title {
+  color: #212B36;
+font-family: Lato;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 22px; /* 157.143% */
 }
