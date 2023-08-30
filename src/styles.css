@@ -6,3 +6,9 @@
   font-family: sans-serif;
   text-align: center;
 }
+
+.styles-module_slider__o0fqa {
+  gap:10px;
+  display:flex;
+  flex-direction:row;
+}

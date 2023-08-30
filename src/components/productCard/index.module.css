@@ -1,6 +1,5 @@
 .card {
   width: 200px;
-  height: 352px;
   transition: 0.2s all ease-in-out;
   cursor: pointer;
 }

@@ -59,7 +59,12 @@ export default function LandingPage() {
             professional, or just someone who loves staying connected, we have
             the perfect phone for you.
           </div>
-          <div onClick={() => window.location.href ="/products"} className={style.button}>Shop Now</div>
+          <div
+            onClick={() => (window.location.href = "/products")}
+            className={style.button}
+          >
+            Shop Now
+          </div>
         </div>
         <div className={style.headerImage}>
           <img src={HeaderImage} alt="headerImage" />
@@ -68,28 +73,38 @@ export default function LandingPage() {
       <div>
         <ProductCategories />
       </div>
-    <div className="bg-white shadow p-4 rounded flex flex-col gap-[10px]">
+      <Productlanding
+        data={products ? products : []}
+        category={"phone"}
+        slate={true}
+        title={"Mobile Phones"}
+      />
+      <div className="mt-3">
         <Productlanding
           data={products ? products : []}
-          category={"phone"}
-          title={"Mobile Phones"}
+          category={"earpods"}
+          sub={true}
+          slate={true}
+          title={"Ear Pods"}
         />
       </div>
       <div>
         <BannerComponent image={banner.img1} title={"Welcome"} />
       </div>
-      <div>
+      <div className="mt-3">
         <Productlanding
           data={products ? products : []}
-          category={"electronics"}
-          title={"Trending"}
+          category={"apple"}
+          title={"Apple Products"}
+          brand={true}
+          slate={false}
         />
       </div>
-      <div>
+     <div className="mt-3">
         <Productlanding
           data={products ? products : []}
-          category={"accessories"}
-          title={"Accssories"}
+          title={"New Launch Products"}
+          newD={true}
         />
       </div>
       <div>

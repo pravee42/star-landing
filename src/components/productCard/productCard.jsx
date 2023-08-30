@@ -10,7 +10,8 @@ export default function ProductCardComponent({
   off,
   price,
   image,
-  details
+  details,
+  slate,
 }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -18,10 +19,14 @@ export default function ProductCardComponent({
   return (
     <>
       <div
-        className={`d-flex flex-column gap-4 align-items-center ${style.card}`}
-        onClick={(_) => navigate(`/product/${details.id}`)}
+        className={`d-flex flex-column gap-3 sm:gap-4 align-items-center  ${
+          slate
+            ? "border p-[7px] rounded drop-shadow-md hover:drop-shadow-xl gap-1"
+            : ""
+        } ${style.card}`}
+        onClick={(_) => (window.location.href = `/product/${details.id}`)}
       >
-        <div className={`${style.cardImage} `}>
+        <div className={`${style.cardImage} ${slate ? "bg-transparent" : ""}`}>
           <div className={`${style.tag} badge bg-dark text-white`}>
             {details.tag}
           </div>
