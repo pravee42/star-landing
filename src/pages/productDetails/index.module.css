@@ -8,7 +8,7 @@
 }
 .container {
   position: relative;
-  margin:40px;
+  margin: 40px;
 }
 
 .ProductContainer {
@@ -18,11 +18,11 @@
   gap: 40px;
 }
 
-@media screen and (max-width:600px){
+@media screen and (max-width: 600px) {
   .ProductContainer {
-     flex-direction: column;
+    flex-direction: column;
     justify-content: center !important;
-  } 
+  }
 }
 
 .imageContainer {
@@ -30,8 +30,8 @@
   flex-direction: column;
 }
 .ProductImage {
-  width:300px;
-  height:300px  
+  width: 300px;
+  height: 300px;
 }
 .subimageContainer {
   display: flex;
@@ -40,11 +40,10 @@
   gap: 10px;
 }
 
-
-@media screen  and (max-width:700px){
-  .subimage{
-    height:125px;
-    width:125px;
+@media screen and (max-width: 700px) {
+  .subimage {
+    height: 125px;
+    width: 125px;
   }
 }
 
@@ -61,12 +60,12 @@
   letter-spacing: 2ic;
 }
 
-@media screen and (max-width:600px){
+@media screen and (max-width: 600px) {
   .TextContainer {
-    gap: 20px;
+    gap: 5px;
   }
   .ProductContainer {
-    gap: 30px;
+    gap: 10px;
   }
 }
 

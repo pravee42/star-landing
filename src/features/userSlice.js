@@ -7,9 +7,14 @@ export const cartSlice = createSlice({
     cart: localStorage.getItem("cart")
       ? JSON.parse(localStorage.getItem("cart"))
       : [],
-    search: localStorage.getItem("search") ? localStorage.getItem("search") : "",
-    ramFilter: '',
-    storageFilter: ''
+    search: localStorage.getItem("search")
+      ? localStorage.getItem("search")
+      : "",
+    ramFilter: "",
+    storageFilter: "",
+    rangeFilter: localStorage.getItem("rangeFilter")
+      ? JSON.parse(localStorage.getItem("rangeFilter"))
+      : { min: 0, max: 0 }
   },
   reducers: {
     addtoCart: (state, action) => {
@@ -55,15 +60,28 @@ export const cartSlice = createSlice({
     },
     setStorage: (state, action) => {
       state.storageFilter = action.payload;
+    },
+    setRange: (state, action) => {
+      state.rangeFilter = action.payload;
+      localStorage.setItem("rangeFilter", JSON.stringify(state.rangeFilter));
     }
   }
 });
 
-export const { addtoCart, changeQty, clearCart, setSearch, setRam, setStorage } = cartSlice.actions;
+export const {
+  addtoCart,
+  changeQty,
+  clearCart,
+  setSearch,
+  setRam,
+  setStorage,
+  setRange
+} = cartSlice.actions;
 
 export const selectCart = (state) => state.user.cart;
 export const selectSearch = (state) => state.user.search;
 export const selectRam = (state) => state.user.ramFilter;
+export const selectRange = (state) => state.user.rangeFilter;
 export const selectStorage = (state) => state.user.storageFilter;
 
 export default cartSlice.reducer;

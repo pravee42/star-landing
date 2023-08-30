@@ -2,6 +2,7 @@
   width: 200px;
   height: 352px;
   transition: 0.2s all ease-in-out;
+  cursor: pointer;
 }
 
 .cardImage {
@@ -11,7 +12,6 @@
   height: 200px;
   border-radius: 20px;
   padding: 10px;
-  cursor: pointer;
 }
 
 .cardImage .tag {
@@ -26,7 +26,7 @@
 }
 
 .bottom {
-  width:100%
+  width: 100%;
 }
 
 .bottom .category {
@@ -39,10 +39,74 @@
 }
 
 .bottom .title {
-  color: #212B36;
-font-family: Lato;
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: 22px; /* 157.143% */
+  color: #212b36;
+  font-family: Lato;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px; /* 157.143% */
+}
+
+.bottom .price {
+  color: #212b36;
+  font-family: Lato;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px; /* 157.143% */
+}
+
+.bottom .stikerate {
+  color: #919eab;
+  font-family: Lato;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  text-decoration-line: line-through;
+  line-height: 22px; /* 157.143% */
+}
+
+@media screen and (max-width: 600px) {
+  .card {
+    width: 170px;
+    height: 250px;
+    gap: 10px !important;
+    align-items: start;
+  }
+
+  .cardImage {
+    width: 170px;
+    height: 160px;
+    border-radius: 10px;
+  }
+
+  .cardImage .tag {
+    right: 5px;
+    top: 5px;
+  }
+
+  .cardImage img {
+    width: 140px;
+  }
+
+  .bottom {
+    width: 100%;
+  }
+
+  .bottom .category {
+    font-size: 11px;
+    font-weight: 400;
+  }
+
+  .bottom .title {
+    font-size: 13px;
+  }
+
+  .bottom .price {
+    font-size: 14px;
+  }
+
+  .bottom .stikerate {
+    font-size: 12px;
+  }
 }

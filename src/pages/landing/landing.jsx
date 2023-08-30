@@ -68,10 +68,7 @@ export default function LandingPage() {
       <div>
         <ProductCategories />
       </div>
-
-      {/* <Content /> */}
-
-      <div>
+    <div className="bg-white shadow p-4 rounded flex flex-col gap-[10px]">
         <Productlanding
           data={products ? products : []}
           category={"phone"}
@@ -87,9 +84,6 @@ export default function LandingPage() {
           category={"electronics"}
           title={"Trending"}
         />
-      </div>
-      <div>
-        <BannerComponent image={banner.img2} title={"Welcome"} />
       </div>
       <div>
         <Productlanding

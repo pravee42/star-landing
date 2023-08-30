@@ -1,84 +1,48 @@
-import React, { useEffect, useState } from "react";
+import React from 'react';
+import { AppBar, Toolbar, Typography, IconButton, Badge, Avatar, Menu, MenuItem } from '@mui/material';
+import { ShoppingCart, Person } from '@mui/icons-material';
 import { useSelector, useDispatch } from "react-redux";
 import { selectCart, setSearch } from "../../features/userSlice";
-import { Badge } from "@nextui-org/react";
-import Logo from "../../assests/logo1.png";
-import style from "./index.module.css";
+import { Link, useLocation } from 'react-router-dom';
 
-export default function NavBar() {
-  const cart = useSelector(selectCart);
-  const [isSticky, setIsSticky] = useState(false);
-  const path = window.location.pathname;
-  const dispatch = useDispatch()
+const Navbar = () => {
+  const location = useLocation();
+  const cart = useSelector(selectCart)
+  const [profileMenuAnchor, setProfileMenuAnchor] = React.useState(null);
 
-  useEffect(() => {
-  const handleScroll = () => {
-    if (window.scrollY > 0) {
-      setIsSticky(true);
-    } else {
-      setIsSticky(false);
-    }
+  const handleProfileMenuOpen = (event) => {
+    setProfileMenuAnchor(event.currentTarget);
   };
-  window.addEventListener("scroll", handleScroll);
 
-  return () => {
-    window.removeEventListener("scroll", handleScroll);
+  const handleProfileMenuClose = () => {
+    setProfileMenuAnchor(null);
   };
-}, []);
 
   return (
-    <div className={`${style.navContainer} ${isSticky ? style.sticky : ""}`} >
-      <nav className={`navbar navbar-expand-lg bg-body-tertiary d-flex flex-row align-items-center ${style.stickyNav}`}>
-        <div className="container-fluid">
-          <a
-            className="navbar-brand d-flex flex-row gap-2 align-items-center"
-            href="/products"
-          >
-            <img src={Logo} style={{ width: 100, height: 100 }} /> Star Mobiles
-          </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+    <AppBar color="transparent" position="static">
+      <Toolbar>
+        <Typography component={Link} to="/products" variant="h6" sx={{ flexGrow: 1, textDecoration: 'none', color: 'inherit' }}>
+          Star Mobiles
+        </Typography>
 
-          <div className="collapse navbar-collapse d-flex align-items-center" id="navbarNavDropdown">
-            <ul className="navbar-nav d-flex align-items-center gap-2">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/products">
-                  Products
-                </a>
-              </li>
-              {path !== "/" ? (
-                <input
-                  type="search"
-                  onChange={e => {dispatch(setSearch(e.target.value))}}
-                  className={`${style.search}`}
-                  placeholder="search here"
-                />
-              ) : null}
-              <li className="nav-item">
-                <Badge content={cart.length} color="primary">
-                  <a className="nav-link" href="/checkout">
-                    Cart <i className="bi bi-bag"></i>
-                  </a>
-                </Badge>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
+        <IconButton color="inherit" component={Link} to="/checkout">
+          <Badge badgeContent={cart.length > 0 ? cart.length : 0} color="error">
+            <ShoppingCart />
+          </Badge>
+        </IconButton>
+
+        <IconButton color="inherit" onClick={handleProfileMenuOpen}>
+          <Avatar>
+            <Person />
+          </Avatar>
+        </IconButton>
+        <Menu anchorEl={profileMenuAnchor} open={Boolean(profileMenuAnchor)} onClose={handleProfileMenuClose}>
+          <MenuItem onClick={handleProfileMenuClose}>Profile</MenuItem>
+          <MenuItem onClick={handleProfileMenuClose}>Logout</MenuItem>
+        </Menu>
+      </Toolbar>
+    </AppBar>
   );
-}
+};
+
+export default Navbar;

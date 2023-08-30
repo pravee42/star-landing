@@ -11,7 +11,9 @@ export default function ProductCategories() {
       <div className={style.container}>
         {ProductCategoriesData.map((data, idx) => (
           <div
-            onClick={() => navigate(`/category/${data.name}`)}
+            onClick={() => {
+              window.location.href = `/category/${data.name}`;
+            }}
             key={idx}
             className={style.Card}
           >

@@ -9,9 +9,8 @@ import Products from "../pages/products/products";
 const Routing = () => {
   return (
     <Routes>
-      {/* <Route path="/" element={<LandingPage />}></Route> */}
       <Route path="/product/:id" element={<ProductDetails />}></Route>
-      <Route path="/profile" element={<LandingPage />}></Route>
+      <Route path="/" element={<LandingPage />}></Route>
       <Route path="/products" element={<Products />}></Route>
       <Route path="/checkout" element={<Checkout />}></Route>
       <Route path="/category/:name" element={<Products />}></Route>

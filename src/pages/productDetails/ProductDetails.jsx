@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import style from "./index.module.css";
 import { Image } from "@nextui-org/react";
 import { onValue, ref } from "firebase/database";
@@ -16,6 +16,7 @@ const ProductDetails = () => {
   const products = useSelector(selectProduct);
   const dispatch = useDispatch();
   const [preview, setPreview] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const ProductsData = () => {
@@ -82,20 +83,20 @@ const ProductDetails = () => {
 
         {product && (
           <div className={`${style.TextContainer}`}>
-           <div className="d-flex gap-2">
+            <div className="d-flex gap-2">
               <p
-              className="badge bg-primary text-white"
-              style={{ width: "fit-content" }}
-            >
-              {product.category}
-            </p>
-             <p
-              className="badge bg-warning text-dark"
-              style={{ width: "fit-content" }}
-            >
-              {product.brand}
-            </p>
-           </div>
+                className="badge bg-primary text-white"
+                style={{ width: "fit-content" }}
+              >
+                {product.category}
+              </p>
+              <p
+                className="badge bg-warning text-dark"
+                style={{ width: "fit-content" }}
+              >
+                {product.brand}
+              </p>
+            </div>
             <p className={`h5`}>{product.name}</p>
             <p className={`h6 text-secondary`}>{product.description}</p>
             <p className="h3 text-success" style={{ width: "fit-content" }}>
@@ -106,18 +107,18 @@ const ProductDetails = () => {
                 <p className="h6 text-dark">Storage</p>
                 <p className="h5 text-primary">{product.storage} GB</p>
               </div>
-               <div className="d-flex flex-row gap-2 align-items-center">
+              <div className="d-flex flex-row gap-2 align-items-center">
                 <p className="h6 text-dark">Display Size</p>
                 <p className="h5 text-primary">{product.displaysize} In</p>
               </div>
-                 <div className="d-flex flex-row gap-2 align-items-center">
+              <div className="d-flex flex-row gap-2 align-items-center">
                 <p className="h6 text-dark">Brand</p>
                 <p className="h5 text-warning">{product.brand}</p>
               </div>
             </div>
             <div className={`${style.ButtonContainer}`}>
               <button
-                onClick={() =>
+                onClick={() => {
                   dispatch(
                     addtoCart({
                       id: product.id,
@@ -127,9 +128,10 @@ const ProductDetails = () => {
                       quantity: 1,
                       total: parseInt(1) * parseInt(product.price)
                     })
-                  )
-                }
-                className={`btn btn-primary p-2 h-5`}
+                  );
+                  navigate("/checkout");
+                }}
+                className={`btn btn-primary`}
               >
                 {" "}
                 Add to cart{" "}
