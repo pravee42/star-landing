@@ -55,28 +55,32 @@ const ProductDetails = () => {
                 fallbackSrc="https://via.placeholder.com/300x200"
                 alt={product.name}
               />
-              <Image
-                width={100}
-                className="rounded cursor-pointer pointer"
-                style={{ cursor: "pointer" }}
-                height={100}
-                onClick={() => setPreview(product.image2)}
-                src={product?.image2}
-                isZoomed
-                fallbackSrc="https://via.placeholder.com/300x200"
-                alt={product.name}
-              />
-              <Image
-                width={100}
-                height={100}
-                onClick={() => setPreview(product.image3)}
-                src={product?.image3}
-                isZoomed
-                className="rounded cursor-pointer pointer"
-                style={{ cursor: "pointer" }}
-                fallbackSrc="https://via.placeholder.com/300x200"
-                alt={product.name}
-              />
+              {product.image2 && (
+                <Image
+                  width={100}
+                  className="rounded cursor-pointer pointer"
+                  style={{ cursor: "pointer" }}
+                  height={100}
+                  onClick={() => setPreview(product.image2)}
+                  src={product?.image2}
+                  isZoomed
+                  fallbackSrc="https://via.placeholder.com/300x200"
+                  alt={product.name}
+                />
+              )}
+              {product.image3 && (
+                <Image
+                  width={100}
+                  height={100}
+                  onClick={() => setPreview(product.image3)}
+                  src={product?.image3}
+                  isZoomed
+                  className="rounded cursor-pointer pointer"
+                  style={{ cursor: "pointer" }}
+                  fallbackSrc="https://via.placeholder.com/300x200"
+                  alt={product.name}
+                />
+              )}
             </div>
           </div>
         ) : null}

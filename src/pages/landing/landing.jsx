@@ -10,9 +10,12 @@ import Productlanding from "./parts/products/products";
 import { Banner1 } from "../../config/api";
 import { db } from "../../firebase";
 import { Content } from "./parts/Content/Content";
+import HeaderSliderComponent from '../../components/swiperHeader/swiperHeader'
+
 export default function LandingPage() {
   const dispatch = useDispatch();
   const [products, setProducts] = useState();
+  const [slides, setSlides] = useState();
 
   const [banner, setBanner] = useState({
     img1: null,
@@ -26,6 +29,19 @@ export default function LandingPage() {
         const data = snapshot.val();
         if (data !== null) {
           setProducts(Object.values(data));
+        }
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    });
+  }, [4]);
+
+   useEffect(() => {
+    onValue(ref(db, "swiper/"), (snapshot) => {
+      try {
+        const data = snapshot.val();
+        if (data !== null) {
+          setSlides(Object.values(data));
         }
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -49,26 +65,28 @@ export default function LandingPage() {
     <div className={style.container}>
       <div className={style.header}>
         <div className={style.headerContent}>
-          <div className={style.title}>
-            Your Gateway to <span>Cutting-Edge</span> Smartphones at Unbeatable
-            Prices!
-          </div>
-          <div className={style.description}>
-            Discover a world of cutting-edge smartphones from top brands at
-            unbeatable prices. Whether you're a tech enthusiast, a busy
-            professional, or just someone who loves staying connected, we have
-            the perfect phone for you.
-          </div>
-          <div
-            onClick={() => (window.location.href = "/products")}
-            className={style.button}
-          >
-            Shop Now
-          </div>
-        </div>
-        <div className={style.headerImage}>
-          <img src={HeaderImage} alt="headerImage" />
-        </div>
+        {/*   <div className={style.title}> */}
+        {/*     Your Gateway to <span>Cutting-Edge</span> Smartphones at Unbeatable */}
+        {/*     Prices! */}
+        {/*   </div> */}
+        {/*   <div className={style.description}> */}
+        {/*     Discover a world of cutting-edge smartphones from top brands at */}
+        {/*     unbeatable prices. Whether you're a tech enthusiast, a busy */}
+        {/*     professional, or just someone who loves staying connected, we have */}
+        {/*     the perfect phone for you. */}
+        {/*   </div> */}
+        {/*   <div */}
+        {/*     onClick={() => (window.location.href = "/products")} */}
+        {/*     className={style.button} */}
+        {/*   > */}
+        {/*     Shop Now */}
+        {/*   </div> */}
+        {/* </div> */}
+        {/* <div className={style.headerImage}> */}
+        {/*   <img src={HeaderImage} alt="headerImage" /> */}
+        {/* </div> */}
+        {slides && <HeaderSliderComponent slides={slides} /> }
+      </div>
       </div>
       <div>
         <ProductCategories />

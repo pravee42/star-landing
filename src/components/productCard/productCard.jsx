@@ -27,7 +27,7 @@ export default function ProductCardComponent({
         onClick={(_) => (window.location.href = `/product/${details.id}`)}
       >
         <div className={`${style.cardImage} ${slate ? "bg-transparent" : ""}`}>
-          <div className={`${style.tag} badge bg-dark text-white`}>
+          <div className={`${style.tag} ${style.tag.toLowerCase() === "sale" ? 'bg-danger' : ' bg-dark'} badge text-white`}>
             {details.tag}
           </div>
           <img src={details.image1} at={details.name} />

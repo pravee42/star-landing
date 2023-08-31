@@ -14,7 +14,6 @@
 .ProductContainer {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   gap: 40px;
 }
 
@@ -22,6 +21,7 @@
   .ProductContainer {
     flex-direction: column;
     justify-content: center !important;
+    gap:50px !important;
   }
 }
 
