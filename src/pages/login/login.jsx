@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { v4 as uuid } from "@lukeed/uuid";
 import { toast } from "react-hot-toast";
-import {
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup
-} from "firebase/auth";
-import { ref, set, query, orderByChild, equalTo, get } from "firebase/database";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { ref, set, onValue } from "firebase/database";
 import { db, auth } from "./../../firebase";
 import TextField from "@mui/material/TextField";
 
@@ -27,11 +21,17 @@ export default function LoginComponent() {
         displayName: res.user.displayName
       };
       setLoginData(userData);
+
       if (res._tokenResponse.isNewUser) {
         setShowForm(true);
       } else {
-        localStorage.setItem("user", JSON.stringify(userData));
-        window.location.href = "/";
+        onValue(ref(db, `users/${userData.uid}`), (snapshot) => {
+          const data = snapshot.val();
+          if (data !== null) {
+            localStorage.setItem("user", JSON.stringify(data));
+            window.location.href = "/";
+          }
+        });
       }
     } catch (error) {
       toast.error("Invalid Email or Password");
