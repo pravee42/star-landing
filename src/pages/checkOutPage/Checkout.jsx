@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import style from "./index.module.css";
+import Modal from "@mui/material/Modal";
 import { onValue } from "firebase/database";
 import { v4 as uuid } from "@lukeed/uuid";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,11 +12,13 @@ import { useNavigate } from "react-router-dom";
 import { selectCart, changeQty, clearCart } from "./../../features/userSlice";
 import { ref, set } from "firebase/database";
 import { db } from "./../../firebase";
+import AddressForm from "../../components/AddAddress";
 
 const Checkout = () => {
   const cart = useSelector(selectCart);
   const dispatch = useDispatch();
   const [step, setStep] = useState(0);
+  const [open, setOpen] = useState(false);
   const steps = ["Cart", "Address", "Check Out"];
   const navigate = useNavigate();
   const [total, setTotal] = useState(0);
@@ -43,6 +46,14 @@ const Checkout = () => {
     });
   }, [cart]);
 
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const saveData = () => {
     let newCart = [];
     cart.map((d) => {
@@ -66,6 +77,12 @@ const Checkout = () => {
       navigate("/");
     });
   };
+
+  useEffect(() => {
+    if (!localStorage.getItem("user")) {
+      window.location.href = "/login";
+    }
+  }, []);
 
   const saveAddress = (data) => {
     setOrderData({
@@ -96,12 +113,30 @@ const Checkout = () => {
           );
         })}
       </Stepper>
+      <Modal
+        onClose={handleClose}
+        open={open}
+        className="flex w-100 items-center justify-center p-4"
+        aria-labelledby="modal-title"
+        aria-describedby="modal-description"
+      >
+        <AddressForm
+          uid={JSON.parse(localStorage.getItem("user"))?.uid}
+          close={handleClose}
+        />
+      </Modal>
       {step === 0 ? (
         <div className="w-full">
           <Step1 cartItems={cart} setStep={setStep} dispatch={dispatch} />
         </div>
       ) : step === 1 ? (
-        <Step2 save={saveAddress} />
+        <Step2
+          open={handleOpen}
+          cartItems={cart}
+          setStep={setStep}
+          dispatch={dispatch}
+          save={saveAddress}
+        />
       ) : null}
     </div>
   );
@@ -237,7 +272,10 @@ const Step1 = ({ cartItems, dispatch, setStep }) => {
   );
 };
 
-const Step2 = ({ save }) => {
+const Step2 = ({ save, cartItems, open }) => {
+  const subTotal = cartItems.reduce((total, item) => total + item.total, 0);
+  const total = cartItems.length > 0 ? subTotal + 40 : subTotal;
+
   const [address, setAddress] = useState();
   const userAddress = JSON.parse(localStorage.getItem("user")).uid;
 
@@ -245,18 +283,24 @@ const Step2 = ({ save }) => {
     onValue(ref(db, `users/${userAddress}/address`), (snapshot) => {
       const data = snapshot.val();
       if (data !== null) {
-        setAddress(data);
+        setAddress(Object.values(data));
       }
     });
   }, []);
 
   return (
-    <div className="flex flex-row gap-[10px] items-center justify-between sm:p-[50px]">
-      <div className="flex  flex-col items-start gap-[10px]">
+    <div className="flex flex-row flex-wrap gap-[50px] items-start  w-100 sm:p-[50px]">
+      <div className="flex flex-col items-start gap-[10px] sm:h-[500px] overflow-auto">
+        <button
+          onClick={open}
+          className="inline-flex items-center justify-center relative box-border bg-transparent outline-none border-0 m-0 cursor-pointer select-none align-middle appearance-none no-underline font-bold leading-7 text-unset font-public-sans min-w-16 p-1 rounded-lg transition-colors duration-250 ease-in-out text-red-500 shadow-none h-7.5 text-sm hover:bg-red-100"
+        >
+          + New Address
+        </button>
         {address?.map((data, idx) => (
           <div
             key={idx}
-            className="flex rounded bg-white p-4 drop-shadow-xl flex-row items-start justify-between"
+            className="flex rounded bg-white p-4 border flex-row items-start justify-between"
           >
             <div className="flex flex-col gap-[10px] items-start  justify-between w-[200px] sm:w-[300px]">
               <p className="m-0 font-semibold leading-6 text-sm font-sans">
@@ -277,6 +321,25 @@ const Step2 = ({ save }) => {
             </button>
           </div>
         ))}
+      </div>
+      <div className={`${style.orderSummary} border w-full sm:w-[300px]`}>
+        <div className={style.title}>Order Summary</div>
+        <div className={style.orderData}>
+          <div className={`flex justify-between py-2`}>
+            <p className={style.subtitle}>Sub Total: </p>
+            <p className={style.title}>₹ {subTotal}</p>
+          </div>
+          {cartItems.length > 0 && (
+            <div className={`flex justify-between py-2`}>
+              <p className={style.subtitle}>Shipping: </p>
+              <p className={style.title}>₹ 40</p>
+            </div>
+          )}
+          <div className={`flex justify-between py-2`}>
+            <p className={style.subtitle}>Total: </p>
+            <p className={style.title}>₹ {total}</p>
+          </div>
+        </div>
       </div>
     </div>
   );
