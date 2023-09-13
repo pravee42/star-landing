@@ -4,6 +4,7 @@ import Modal from "@mui/material/Modal";
 import { onValue } from "firebase/database";
 import { v4 as uuid } from "@lukeed/uuid";
 import { useSelector, useDispatch } from "react-redux";
+import Ordered from '../../assests/ordered.webp'
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
@@ -137,7 +138,7 @@ const Checkout = () => {
           dispatch={dispatch}
           save={saveAddress}
         />
-      ) : null}
+      ) : step === 2 ? <Step3 saveData={saveData} /> : null}
     </div>
   );
 };
@@ -344,3 +345,11 @@ const Step2 = ({ save, cartItems, open }) => {
     </div>
   );
 };
+
+const Step3 = ({saveData}) => {
+  return <div className="flex flex-col mt-3 p-[20px] w-full justify-center items-center">
+    <p className="h5 text-dark">Order Placed Successfully</p>
+    <img style={{maxWidth: 300}} src={Ordered} alt="Free Pick Image" />
+    <button onClick={saveData} className="btn btn-dark">Continue Shopping</button>
+  </div>
+}
